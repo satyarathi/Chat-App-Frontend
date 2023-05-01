@@ -132,25 +132,22 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
       }
     }
 
-    // const sendMail = async () =>{
-    //   try{
-    //   const config = {
-    //     headers : {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${user.token}`
-    //     }
-    //   };
+    const sendMail = async () =>{
+      console.log("here");
+     
+      try {
 
-    //   const {data} = await axios.post(`/api/chat/send-email/${selectedChat._id}`,config
-    //   );
-
-    //   console.log(data);
-    //   // socket.emit('new email',selectedChat._id);
-    // }catch(error){
-    //   console.log(error);
-    // }
-    // }
- 
+        const config = {
+          headers : {
+            Authorization: `Bearer ${user.token}`
+          }
+        };
+      const data = await axios.post('http://localhost:5000/api/chat/send-email/'+selectedChat._id,config);
+      console.log("data",data);
+    }catch(error){
+      console.log(error);
+    }
+    }
 
       
     const typingHandler = (emojiObject) =>{
@@ -180,15 +177,18 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
 
   return (
     <>
+   
     {
         selectedChat ? (
             <>
+           
             <Text
              fontSize={{ base: "28px", md: "30px" }}
              pb={3}
              px={2}
              w="100%"
-             fontFamily="Work sans"
+             color={'facebook.700'}
+             fontFamily="revert-layer"
              display="flex"
              justifyContent={{ base: "space-between" }}
              alignItems="center"
@@ -203,7 +203,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
                 {!selectedChat.isGroupChat ? (
                     <>
                     {getSender(user, selectedChat.users)}
-                    <ProfileModal user={getSenderFullObj(user, selectedChat.users)}/>
+                    <div style={{marginRight:"-200px", marginBottom:"4px"}}><ProfileModal user={getSenderFullObj(user, selectedChat.users)} /></div>
                     </>
                 ) : (
                     <>
@@ -215,7 +215,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
                     />
                     </>
                 )}
-                {/* <Button onClick={sendMail}>Email</Button> */}
+                <Button onClick={sendMail}>Email</Button>
             </Text>
 
                <Box 
@@ -241,7 +241,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
                     />
                   ): (
                     <div className="messages">
-                      {/* {messages} */}
+                      
                       <ScrollableChat messages={messages} />
                     </div>
                   )}
@@ -269,6 +269,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
                   </FormControl>
                   
                </Box>
+               
             </>
         ) : (
             <Box display='flex' alignItems="center" justifyContent="center" h="100%">
@@ -277,8 +278,10 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
                 </Text>
 
             </Box>
+            
         )
     }
+    
     </>
   )
 }
