@@ -163,15 +163,17 @@ const Signup = () => {
         />
       </FormControl>
 
-      <Button
-        colorScheme="blue"
-        width="100%"
-        style={{ marginTop: 15 }}
+      <input
+        type="submit"
+        name="name"
+        className="btn"
+        value="Register User"
         onClick={submitHandler}
-        isLoading = {loading}
-      >
-        Sign Up
-      </Button>
+        style={{cursor:'pointer', backgroundImage:"linear-gradient(to right, #08CCFD, #0379FD)", display: 'block', width: '100%',padding: '8px', borderRadius: '30px',color: '#fff',
+        border:'0',
+        fontSize: '19px'
+        }}
+      /> 
 
     </VStack>
   )

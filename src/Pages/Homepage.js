@@ -6,6 +6,7 @@ import { Box, Container, Text,Tab,
   Tabs } from "@chakra-ui/react";
 import Signup from '../components/Authentication/Signup';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import Login from '../components/Authentication/Login';
 
 const Homepage = () => {
 
@@ -43,7 +44,7 @@ const Homepage = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              {/* <Login /> */}
+              <Login />
             </TabPanel>
             <TabPanel>
               <Signup />
