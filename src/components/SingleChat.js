@@ -193,7 +193,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
              pb={3}
              px={2}
              w="100%"
-             color={'facebook.700'}
+             color={'white'}
              fontFamily="revert-layer"
              display="flex"
              justifyContent={{ base: "space-between" }}
@@ -201,15 +201,16 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
             >
 
                 <IconButton 
+                  style={{backgroundColor:"darkgray"}}
                   d={{base:"flex", md:"none"}}
-                  icon={<ArrowBackIcon />}
+                  icon={<ArrowBackIcon style={{backgroundColor:"darkgray"}}/>}
                   onClick={()=>setSelectedChat("")}
                 />
                 
                 {!selectedChat.isGroupChat ? (
                     <>
                     {getSender(user, selectedChat.users)}
-                    <div style={{marginRight:"-200px", marginBottom:"4px"}}><ProfileModal user={getSenderFullObj(user, selectedChat.users)} /></div>
+                    <div style={{marginRight:"-200px", marginBottom:"4px"}}><ProfileModal  style={{backgroundColor:"darkgray"}}  user={getSenderFullObj(user, selectedChat.users)} /></div>
                     </>
                 ) : (
                     <>
@@ -221,7 +222,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
                     />
                     </>
                 )}
-                <Button onClick={sendMail}>Email</Button>
+                <Button onClick={sendMail} style={{backgroundColor:"darkgray"}}>Email</Button>
             </Text>
 
                <Box 
