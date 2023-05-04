@@ -8,7 +8,7 @@ import { AddIcon } from '@chakra-ui/icons';
 import ChatLoading from './ChatLoading';
 import { Stack } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/react';
-import { getSender } from '../config/ChatLogic';
+import { getSender, getSenderFullObj } from '../config/ChatLogic';
 import GroupChatModal from './chatComponents/GroupChatModal';
 
 const MyChat = ({fetchAgain}) => {
@@ -55,7 +55,7 @@ const MyChat = ({fetchAgain}) => {
       flexDir="column"
       alignItems="center"
       p={6}
-      bg="radial-gradient(ellipse at bottom, #7badec 40%, #1e1f2a 100%)"
+      bg="radial-gradient(ellipse at bottom, #7badec 25%, #1e1f2a 150%)"
       w={{base: "100%", md: "31%"}}
       borderRadius="lg"
       borderWidth="1px"
@@ -80,7 +80,7 @@ const MyChat = ({fetchAgain}) => {
        d="flex"
        fontSize={{base:"17px", md:"10px", lg:"17px"}}
        rightIcon={<AddIcon />}
-       bg="radial-gradient(ellipse at left, #0d1d30 50%, #0c0d13 100%)"
+       bg="darkgray"
        color={'white'}
      >
        New Group Chat
@@ -96,7 +96,7 @@ const MyChat = ({fetchAgain}) => {
       w="100%"
       h="100%"
       borderRadius="lg"
-      overflowY="hidden"  //will display the data that will fit in area other will be invisible
+      overflowY="scroll"  
     >
       {
         chats ? (
@@ -107,7 +107,7 @@ const MyChat = ({fetchAgain}) => {
                     <Box
                        onClick={()=> setSelectedChat(chat)}
                        cursor="pointer"
-                       bg = { selectedChat === chat ? "gray" : "radial-gradient(ellipse at left, #7badec 0%, #1e1f2a 180%)"}
+                       bg = { selectedChat === chat ? "green.400" : "cyan.800"}
                        color={ selectedChat === chat ? "black" : "white"}
                        px={3}
                        py={2}
@@ -115,12 +115,30 @@ const MyChat = ({fetchAgain}) => {
                        key={chat._id}
                      >
                        <div style={{display:"flex", alignItems:"center"}}>
-                      <Avatar size={'sm'}  src={chat.users[0].pic}/>
-                      <Text style={{fontFamily:"emoji", fontSize:"20px", margin:"2px", color:"black"}}>
+                      <Avatar
+                      width={12}
+                      height={12}
+                      src={
+                        getSenderFullObj(loggedUser, chat.users).pic
+                      }
+                      mr={2}
+                      mt={1}
+                    />
+                    <div style={{display:"flex", flexDirection:"column"}}>
+                      <Text style={{fontFamily:"emoji", fontSize:"20px", margin:"2px", color:"white"}}>
                         {!chat.isGroupChat ?
                          getSender(loggedUser,chat.users) :
                           chat.chatName}
                       </Text>
+                      {chat.latestMessage && (
+                  <Text fontSize="xs" color={"aquamarine"}>
+                    
+                    <b>{chat.latestMessage.sender.name} : </b>
+                    {chat.latestMessage.content.length > 50
+                      ? chat.latestMessage.content.substring(0, 30) + "..."
+                      : chat.latestMessage.content}
+                  </Text>
+                )}</div>
                       </div>
                     </Box>
                 ))

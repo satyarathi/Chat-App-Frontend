@@ -210,7 +210,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
                 {!selectedChat.isGroupChat ? (
                     <>
                     {getSender(user, selectedChat.users)}
-                    <div style={{marginRight:"-200px", marginBottom:"4px"}}><ProfileModal  style={{backgroundColor:"darkgray"}}  user={getSenderFullObj(user, selectedChat.users)} /></div>
+                    <div style={{marginRight:"-200px", marginBottom:"4px",  color:"black"}}><ProfileModal  user={getSenderFullObj(user, selectedChat.users)} /></div>
                     </>
                 ) : (
                     <>
@@ -222,7 +222,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
                     />
                     </>
                 )}
-                <Button onClick={sendMail} style={{backgroundColor:"darkgray"}}>Email</Button>
+                <Button style={{backgroundColor:"darkgray"}} onClick={sendMail}>Email</Button>
             </Text>
 
                <Box 
@@ -260,7 +260,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
                       <div style={{display:"flex"}}>
                       <img className='emoji-icon'
                       src = "http://icons.getbootstrap.com/assets/icons/emoji-smile.svg"
-                      style={{margin:"5px", height:"20px"}}
+                      style={{margin:"10x", height:"20px"}}
                       onClick={() => setShowEmojis(!showEmojis)} />
                   {showEmojis && <Picker
                    onEmojiClick={typingHandler} />}
