@@ -55,15 +55,15 @@ const MyChat = ({fetchAgain}) => {
       flexDir="column"
       alignItems="center"
       p={3}
-      bg="white"
+      bg="radial-gradient(ellipse at bottom, #7badec 40%, #1e1f2a 100%)"
       w={{base: "100%", md: "31%"}}
       borderRadius="lg"
       borderWidth="1px"
     >
     
     <Box
-      pb = {3}  //padding bottam
-      px= {3}   //padding horizontal
+      pb = {3}  
+      px= {3}   
       fontSize={{base:"28px", md:"28px"}}
       display={"flex"}
       w="100%"
