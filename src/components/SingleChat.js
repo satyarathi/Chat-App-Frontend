@@ -256,21 +256,22 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
                   <FormControl onKeyDown={sendMessage} isRequired mt={3}>
                       {isTyping ? <div>typing...</div> : <></>}
                       
+                      <div style={{display:"flex"}}>
+                      <img className='emoji-icon'
+                      src = "http://icons.getbootstrap.com/assets/icons/emoji-smile.svg"
+                      style={{margin:"5px", height:"20px"}}
+                      onClick={() => setShowEmojis(!showEmojis)} />
+                  {showEmojis && <Picker
+                   onEmojiClick={typingHandler} />}
                       <Input 
                         variant="filled"
                         bg= "#E0E0E0"
                         placeholder='Enter a message...'
                         onChange={e => setNewMessage(e.target.value)}
-                        value={newMessage}
-                        
-                      />
-                      {/* <input className='ijk' value={newMessage} 
-                      onChange={e => setNewMessage(e.target.value)} /> */}
-                      <img className='emoji-icon'
-                      src = "http://icons.getbootstrap.com/assets/icons/emoji-smile.svg"
-                      onClick={() => setShowEmojis(!showEmojis)} />
-                  {showEmojis && <Picker
-                   onEmojiClick={typingHandler} />}
+                        value={newMessage}        
+                      />  
+                   </div>
+                     
                       
                   </FormControl>
                   
