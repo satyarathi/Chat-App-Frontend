@@ -13,7 +13,7 @@ import Picker from 'emoji-picker-react';
 
 import io from "socket.io-client";
 
-const ENDPOINT = "https://5301-221-135-123-50.ngrok-free.app";
+const ENDPOINT = "https://8312-221-135-123-50.ngrok-free.app";
 var socket, selectedChatCompare;
 
 const SingleChat = ({fetchAgain,setFetchAgain}) => {

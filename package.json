@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://5301-221-135-123-50.ngrok-free.app",
+  "proxy": "https://8312-221-135-123-50.ngrok-free.app",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.6.0",
