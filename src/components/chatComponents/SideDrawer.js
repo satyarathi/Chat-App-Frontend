@@ -135,7 +135,7 @@ const SideDrawer = () => {
          </Button>
         </Tooltip>
 
-        <Text fontSize="2xl" fontFamily="Work sans">
+        <Text fontSize="4xl" fontFamily="Work sans" color={"white"} shadow={"inner"}>
           Chat App
         </Text>
 
