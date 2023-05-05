@@ -1,7 +1,7 @@
 import { Button, Tooltip, Text, Menu, MenuButton, MenuList, Avatar, MenuItem, MenuDivider, Input, useToast } from '@chakra-ui/react';
 import React, { useState } from 'react'
 import { Box } from '@chakra-ui/react';
-import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { BellIcon, ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 import { ChatState } from "../../context/ChatProvider";
 import ProfileModal from './ProfileModal';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
@@ -110,7 +110,7 @@ const SideDrawer = () => {
         display={'flex'}
         justifyContent="space-between"
         alignItems="center"
-        bg="#E6E6FA"
+        bg="radial-gradient(ellipse at bottom, #7badec 0%, #1e1f2a 120%)"
         w="100%"
         p="5px 10px 5px 10px"
         borderWidth="5px"
@@ -123,6 +123,7 @@ const SideDrawer = () => {
 
          <Button variant="ghost" onClick={onOpen} bg={'gray'}>
          <i className="fas fa-search"></i>
+         <SearchIcon style={{color:"white"}}/>
          <Text
            d = {{base: "none", md:"flex"}}
            px="4"
