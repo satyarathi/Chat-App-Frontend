@@ -148,7 +148,7 @@ const SideDrawer = () => {
                    count={notification.length}
                    effect={Effect.SCALE}
                   />
-                  <BellIcon fontSize="2xl" m={1} />
+                  <BellIcon fontSize="2xl" m={1} color={'white'}/>
                 </MenuButton>
                  
                  <MenuList>
