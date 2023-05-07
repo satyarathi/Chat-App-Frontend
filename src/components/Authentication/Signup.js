@@ -126,6 +126,7 @@ const Signup = () => {
         <Input 
           _placeholder='Enter Your Name'
           onChange={(e)=>setName(e.target.value)}
+          style={{borderTop:"0px", borderLeft:"0px", borderRight:"0px", bordeBottom:"2px solid black"}}
         />
      </FormControl>
 
@@ -134,6 +135,7 @@ const Signup = () => {
         <Input 
           _placeholder='Enter Your email'
           onChange={(e)=>setEmail(e.target.value)}
+          style={{borderTop:"0px", borderLeft:"0px", borderRight:"0px", bordeBottom:"2px solid black"}}
         />
      </FormControl>
 
@@ -144,6 +146,7 @@ const Signup = () => {
             type={show ? "text" : "password"}
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
+            style={{borderTop:"0px", borderLeft:"0px", borderRight:"0px", bordeBottom:"2px solid black"}}
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>

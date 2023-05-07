@@ -110,10 +110,11 @@ const SideDrawer = () => {
         display={'flex'}
         justifyContent="space-between"
         alignItems="center"
-        bg="radial-gradient(ellipse at bottom, #7badec 0%, #1e1f2a 120%)"
+        bg="rgb(51,144,236)"
         w="100%"
         p="5px 10px 5px 10px"
         borderWidth="5px"
+        border={"rgb(51,144,236)"}
       >
         <Tooltip 
         label="Search users" 
@@ -127,15 +128,16 @@ const SideDrawer = () => {
          <Text
            d = {{base: "none", md:"flex"}}
            px="4"
-           color={"black"}
-          
+           color={"white"}
+           borderRadius={"5px"}
+           p={"5px"}
           >
               Search User
          </Text>
          </Button>
         </Tooltip>
 
-        <Text fontSize="4xl" fontFamily="Work sans" color={"white"} shadow={"inner"}>
+        <Text fontSize="4xl" color={"white"} shadow={"inner"}>
           Chat App
         </Text>
 

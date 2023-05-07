@@ -82,6 +82,7 @@ const Login = () => {
           type="email"
           placeholder="Enter Your Email Address"
           onChange={(e) => setEmail(e.target.value)}
+          style={{borderTop:"0px", borderLeft:"0px", borderRight:"0px", bordeBottom:"2px solid black"}}
         />
       </FormControl>
       <FormControl id="passwordLogin" isRequired>
@@ -92,6 +93,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             type={show ? "text" : "password"}
             placeholder="Enter password"
+            style={{borderTop:"0px", borderLeft:"0px", borderRight:"0px", bordeBottom:"2px solid black"}}
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>

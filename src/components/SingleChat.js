@@ -3,7 +3,7 @@ import { ChatState } from "../context/ChatProvider";
 import { Box, Text } from "@chakra-ui/layout";
 import {Button, FormControl, IconButton, Input, Spinner, useToast,
 } from "@chakra-ui/react";
-import { ArrowBackIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon, AttachmentIcon } from "@chakra-ui/icons";
 import { getSender, getSenderFullObj } from "../config/ChatLogic";
 import ProfileModal from "../components/chatComponents/ProfileModal";
 import UpdateGroupChatModal from "./chatComponents/UpdateGroupChatModal";
@@ -11,7 +11,7 @@ import axios from "axios";
 import "./styles.css";
 import ScrollableChat from "./ScrollableChat";
 import Picker from "emoji-picker-react";
-import Image from "../image/tele.png";
+import Image from "../image/tele.jpg";
 
 
 import io from "socket.io-client";
@@ -288,7 +288,7 @@ const uploadImage = async(pics) =>{
             <IconButton
               style={{ backgroundColor:"rgb(51,144,236)"}}
               d={{ base: "flex", md: "none" }}
-              icon={<ArrowBackIcon style={{ backgroundColor: "darkgray" }} />}
+              icon={<ArrowBackIcon style={{ backgroundColor: "rgb(51,144,236)" }} />}
               onClick={() => setSelectedChat("")}
             />
 

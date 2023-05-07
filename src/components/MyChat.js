@@ -55,10 +55,9 @@ const MyChat = ({fetchAgain}) => {
       flexDir="column"
       alignItems="center"
       p={6}
-      bg="radial-gradient(ellipse at bottom, #7badec 25%, #1e1f2a 150%)"
+      bg="white"
       w={{base: "100%", md: "31%"}}
       borderRadius="lg"
-      borderWidth="1px"
     >
     
     <Box
@@ -67,8 +66,7 @@ const MyChat = ({fetchAgain}) => {
       fontSize={{base:"28px", md:"28px"}}
       display={"flex"}
       w="100%"
-      color={"white"}
-      fontFamily="Work sans"
+      color={"black"}
       justifyContent="space-between"
       alignItems="center"
     >
@@ -80,7 +78,7 @@ const MyChat = ({fetchAgain}) => {
        d="flex"
        fontSize={{base:"17px", md:"10px", lg:"17px"}}
        rightIcon={<AddIcon />}
-       bg="darkgray"
+       bg="rgb(51,144,236)"
        color={'white'}
      >
        New Group Chat
@@ -92,7 +90,7 @@ const MyChat = ({fetchAgain}) => {
       d="flex"
       flexDir="column"
       p={3}
-      bg = "lavender"
+      bg = "white"
       w="100%"
       h="100%"
       borderRadius="lg"
@@ -107,11 +105,11 @@ const MyChat = ({fetchAgain}) => {
                     <Box
                        onClick={()=> setSelectedChat(chat)}
                        cursor="pointer"
-                       bg = { selectedChat === chat ? "green.400" : "cyan.800"}
+                       bg = { selectedChat === chat ? "rgb(51,144,236)" : "white"}
                        color={ selectedChat === chat ? "black" : "white"}
                        px={3}
                        py={2}
-                       borderRadius="lg"
+                       style={{borderBottom:"1px solid grey" }}
                        key={chat._id}
                      >
                        <div style={{display:"flex", alignItems:"center"}}>
@@ -125,7 +123,7 @@ const MyChat = ({fetchAgain}) => {
                       mt={1}
                     />
                     <div style={{display:"flex", flexDirection:"column"}}>
-                      <Text style={{fontFamily:"emoji", fontSize:"20px", margin:"2px", color:"white"}}>
+                      <Text style={{fontSize:"20px", margin:"2px", color:"black"}}>
                         {!chat.isGroupChat ?
                          getSender(loggedUser,chat.users) :
                           chat.chatName}

@@ -7,6 +7,7 @@ import { Box, Container, Text,Tab,
 import Signup from '../components/Authentication/Signup';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Login from '../components/Authentication/Login';
+import Image from "../image/chat.png"
 
 const Homepage = () => {
 
@@ -20,7 +21,9 @@ const Homepage = () => {
   },[history]);
 
   return (
-    <Container maxW='xl' centerContent>
+    <div style={{height:"100vh", width:"100vw", display:"flex"}}>
+      <img src={Image} style={{height:"100%", width:"50%"}}></img>
+      <div style={{height:"100%", width:"50%" , background:"white"}}>
        <Box
         d="flex"
         justifyContent="center"
@@ -28,19 +31,17 @@ const Homepage = () => {
         bg="white"
         w="100%"
         m="40px 0 15px 0"
-        borderRadius="4px"
-        borderWidth="1px"
+        
         >
-        <Text fontSize='4xl' fontFamily="Work sans" color="black" ml="33%">
+        <Text fontSize='4xl'  color="black" ml="33%">
           Chat App
         </Text>
        </Box>
 
-       <Box bg="white" w="100%" p={4} borderRadius="4px" borderWidth="1px">
+       <Box bg="white" w="100%" p={4} >
        <Tabs isFitted variant="soft-rounded">
           <TabList mb="1em">
-            <Tab>Login</Tab>
-            <Tab>Sign Up</Tab>
+            
           </TabList>
           <TabPanels>
             <TabPanel>
@@ -52,7 +53,9 @@ const Homepage = () => {
           </TabPanels>
         </Tabs>
        </Box>
-    </Container>
+    
+    </div>
+    </div>
   )
 }
 
