@@ -122,13 +122,13 @@ const SideDrawer = () => {
         placement="bottom-end"
         >
 
-         <Button variant="ghost" onClick={onOpen} bg={'gray'}>
+         <Button variant="ghost" onClick={onOpen} bg={'White'}>
          <i className="fas fa-search"></i>
-         <SearchIcon style={{color:"white"}}/>
+         <SearchIcon style={{color:"black"}}/>
          <Text
            d = {{base: "none", md:"flex"}}
            px="4"
-           color={"white"}
+           color={"black"}
            borderRadius={"5px"}
            p={"5px"}
           >
