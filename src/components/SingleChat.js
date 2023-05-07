@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ChatState } from "../context/ChatProvider";
 import { Box, Text } from "@chakra-ui/layout";
-import {
-  Button,
-  FormControl,
-  IconButton,
-  Input,
-  Spinner,
-  useToast,
+import {Button, FormControl, IconButton, Input, Spinner, useToast,
 } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { getSender, getSenderFullObj } from "../config/ChatLogic";
@@ -36,7 +30,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState();
   const [socketConnected, setSocketConnected] = useState(false);
-
+  const [pic, setPic] = useState();
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [showEmojis, setShowEmojis] = useState(false);
@@ -128,6 +122,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           "/api/message",
           {
             content: newMessage,
+            image: "",
             chatId: selectedChat._id,
           },
           config
@@ -150,6 +145,76 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       }
     }
   };
+
+  const sendImage = async()=>{
+    try {
+      
+      const config = {
+        headers : {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`
+        }
+      };
+
+      setNewMessage("");
+      
+      const {data} = await axios.post('/api/message',{
+        content: '',
+        image: pic,
+        chatId: selectedChat._id,
+      },
+       config
+      );
+
+      console.log(data);
+
+      socket.emit('new message',data, data.image);
+      
+
+      setMessages([...messages, data]);
+      
+    } catch (error) {
+       toast({
+          title: "Error Occured..",
+          description: "failed to send msg",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+       });
+    }
+
+}
+
+const uploadImage = async(pics) =>{
+  try {
+    if(pics.type==="image/jpeg" || pics.type ==="image/png") {
+      const data = new FormData();
+      data.append("file",pics);
+      data.append("upload_preset","chat-app");
+      data.append("cloud_name","dmsibzcrw");
+      fetch("https://api.cloudinary.com/v1_1/dmsibzcrw/image/upload",{
+        method:"post",
+        body: data
+      }).then((res)=> res.json())
+       
+        .then(data => {
+          setPic(data.url.toString());
+         console.log(data.url.toString());
+          setLoading(false);
+        })
+        .catch((err)=> {
+          console.log(err);
+          setLoading(false);
+        })
+    } 
+
+    
+
+  } catch (error) {
+    console.log(error);
+  }
+} 
 
   const sendMail = async () => {
     console.log("here");
@@ -206,19 +271,20 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     <>
       {selectedChat ? (
         <>
+         <div style={{display:"flex", justifyContent:"space-between",}}>
           <Text
             fontSize={{ base: "28px", md: "30px" }}
             pb={3}
             px={2}
             w="100%"
-            color={"white"}
+            color={"black"}
             fontFamily="revert-layer"
             display="flex"
             justifyContent={{ base: "space-between" }}
             alignItems="center"
           >
             <IconButton
-              style={{ backgroundColor: "darkgray" }}
+              style={{ backgroundColor:"rgb(51,144,236)"}}
               d={{ base: "flex", md: "none" }}
               icon={<ArrowBackIcon style={{ backgroundColor: "darkgray" }} />}
               onClick={() => setSelectedChat("")}
@@ -231,7 +297,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   style={{
                     marginRight: "-200px",
                     marginBottom: "4px",
-                    color: "black",
+                    color: "rgb(51,144,236)",
                   }}
                 >
                   <ProfileModal
@@ -249,17 +315,17 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 />
               </>
             )}
-            <Button style={{ backgroundColor: "darkgray" }} onClick={sendMail}>
+            <Button style={{ backgroundColor: "rgb(51,144,236)" }} onClick={sendMail}>
               Email
             </Button>
           </Text>
+          </div>
 
           <Box
             display="flex"
             flexDir="column"
             justifyContent="flex-end"
             p={3}
-            bg="#E8E8E8"
             w="100%"
             h="90%"
             borderRadius="lg"
