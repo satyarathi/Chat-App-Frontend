@@ -50,6 +50,7 @@ const ScrollableChat = ({messages}) => {
               }}
             >
               {m.content}
+              {<img src ={m.image}  ></img>}
             </span>
             </div>
          ) )
