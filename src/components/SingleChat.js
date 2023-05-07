@@ -11,6 +11,8 @@ import axios from "axios";
 import "./styles.css";
 import ScrollableChat from "./ScrollableChat";
 import Picker from "emoji-picker-react";
+import Image from "../image/tele.png";
+
 
 import io from "socket.io-client";
 
@@ -326,10 +328,12 @@ const uploadImage = async(pics) =>{
             flexDir="column"
             justifyContent="flex-end"
             p={3}
+            backgroundImage={Image}
+            opacity="85%"
             w="100%"
             h="90%"
             borderRadius="lg"
-            overflowY="hidden"
+            overflowY="scroll"
           >
             {/* {messgages here} */}
 
@@ -379,9 +383,23 @@ const uploadImage = async(pics) =>{
                 onKeyDown={sendMessage}
                 onFocus={() => setShowEmojis(false)}
               />
-            </FormControl>
 
-            
+              <IconButton
+                as="label"
+                htmlFor="upload"
+                icon={<AttachmentIcon/>}
+                fontSize="20px"
+                variant="ghost"
+                _hover={{ bg: "transparent" }} />
+              <input
+                id="upload"
+                type="file"
+                accept="image/*"
+                onChange={(e) => uploadImage(e.target.files[0])}
+                style={{ display: "none" }}/>
+              <Button type="submit" onClick={sendImage}> Send</Button>
+            </FormControl>
+ 
           </Box>
         </>
       ) : (
