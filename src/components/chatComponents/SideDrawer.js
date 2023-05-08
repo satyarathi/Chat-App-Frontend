@@ -138,7 +138,7 @@ const SideDrawer = () => {
         </Tooltip>
 
         <Text fontSize="4xl" color={"white"} shadow={"inner"}>
-          Chat App
+          Friend Zone
         </Text>
 
         <div>

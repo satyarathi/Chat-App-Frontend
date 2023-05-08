@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ChatState } from "../context/ChatProvider";
 import { Box, Text } from "@chakra-ui/layout";
-import {Button, FormControl, IconButton, Input, Spinner, useToast,
+import {
+  Button, FormControl, IconButton, Input, Spinner, useToast,
 } from "@chakra-ui/react";
 import { ArrowBackIcon, AttachmentIcon } from "@chakra-ui/icons";
 import { getSender, getSenderFullObj } from "../config/ChatLogic";
@@ -148,75 +149,75 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }
   };
 
-  const sendImage = async()=>{
+  const sendImage = async () => {
     try {
-      
+
       const config = {
-        headers : {
+        headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${user.token}`
         }
       };
 
       setNewMessage("");
-      
-      const {data} = await axios.post('/api/message',{
+
+      const { data } = await axios.post('/api/message', {
         content: '',
         image: pic,
         chatId: selectedChat._id,
       },
-       config
+        config
       );
 
       console.log(data);
 
-      socket.emit('new message',data, data.image);
-      
+      socket.emit('new message', data, data.image);
+
 
       setMessages([...messages, data]);
-      
+
     } catch (error) {
-       toast({
-          title: "Error Occured..",
-          description: "failed to send msg",
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom",
-       });
+      toast({
+        title: "Error Occured..",
+        description: "failed to send msg",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
     }
 
-}
-
-const uploadImage = async(pics) =>{
-  try {
-    if(pics.type==="image/jpeg" || pics.type ==="image/png") {
-      const data = new FormData();
-      data.append("file",pics);
-      data.append("upload_preset","chat-app");
-      data.append("cloud_name","dmsibzcrw");
-      fetch("https://api.cloudinary.com/v1_1/dmsibzcrw/image/upload",{
-        method:"post",
-        body: data
-      }).then((res)=> res.json())
-       
-        .then(data => {
-          setPic(data.url.toString());
-         console.log(data.url.toString());
-          setLoading(false);
-        })
-        .catch((err)=> {
-          console.log(err);
-          setLoading(false);
-        })
-    } 
-
-    
-
-  } catch (error) {
-    console.log(error);
   }
-} 
+
+  const uploadImage = async (pics) => {
+    try {
+      if (pics.type === "image/jpeg" || pics.type === "image/png") {
+        const data = new FormData();
+        data.append("file", pics);
+        data.append("upload_preset", "chat-app");
+        data.append("cloud_name", "dmsibzcrw");
+        fetch("https://api.cloudinary.com/v1_1/dmsibzcrw/image/upload", {
+          method: "post",
+          body: data
+        }).then((res) => res.json())
+
+          .then(data => {
+            setPic(data.url.toString());
+            console.log(data.url.toString());
+            setLoading(false);
+          })
+          .catch((err) => {
+            console.log(err);
+            setLoading(false);
+          })
+      }
+
+
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const sendMail = async () => {
     console.log("here");
@@ -228,8 +229,7 @@ const uploadImage = async(pics) =>{
         },
       };
       const data = await axios.post(
-        "http://localhost:5000/api/chat/send-email/" + selectedChat._id,
-        config
+        "http://localhost:5000/api/chat/send-email/" + selectedChat._id + "," + user.email, config
       );
       console.log("data", data);
     } catch (error) {
@@ -237,15 +237,15 @@ const uploadImage = async(pics) =>{
     }
   };
 
-  
+
 
   const sendImogi = (emojiObject) => {
     setNewMessage((prev) => prev + emojiObject?.emoji);
     // console.log(newMessage)
     setShowEmojis(false);
-   
- }
-  
+
+  }
+
   const typingHandler = (event) => {
     setNewMessage(event.target.value)
     // {typing logic}
@@ -273,54 +273,54 @@ const uploadImage = async(pics) =>{
     <>
       {selectedChat ? (
         <>
-         <div style={{display:"flex", justifyContent:"space-between",}}>
-          <Text
-            fontSize={{ base: "28px", md: "30px" }}
-            pb={3}
-            px={2}
-            w="100%"
-            color={"black"}
-            fontFamily="revert-layer"
-            display="flex"
-            justifyContent={{ base: "space-between" }}
-            alignItems="center"
-          >
-            <IconButton
-              style={{ backgroundColor:"rgb(51,144,236)"}}
-              d={{ base: "flex", md: "none" }}
-              icon={<ArrowBackIcon style={{ backgroundColor: "rgb(51,144,236)" }} />}
-              onClick={() => setSelectedChat("")}
-            />
+          <div style={{ display: "flex", justifyContent: "space-between", }}>
+            <Text
+              fontSize={{ base: "28px", md: "30px" }}
+              pb={3}
+              px={2}
+              w="100%"
+              color={"black"}
+              fontFamily="revert-layer"
+              display="flex"
+              justifyContent={{ base: "space-between" }}
+              alignItems="center"
+            >
+              <IconButton
+                style={{ backgroundColor: "rgb(51,144,236)" }}
+                d={{ base: "flex", md: "none" }}
+                icon={<ArrowBackIcon style={{ backgroundColor: "rgb(51,144,236)" }} />}
+                onClick={() => setSelectedChat("")}
+              />
 
-            {!selectedChat.isGroupChat ? (
-              <>
-                {getSender(user, selectedChat.users)}
-                <div
-                  style={{
-                    marginRight: "-200px",
-                    marginBottom: "4px",
-                    color: "rgb(51,144,236)",
-                  }}
-                >
-                  <ProfileModal
-                    user={getSenderFullObj(user, selectedChat.users)}
+              {!selectedChat.isGroupChat ? (
+                <>
+                  {getSender(user, selectedChat.users)}
+                  <div
+                    style={{
+                      marginRight: "-200px",
+                      marginBottom: "4px",
+                      color: "rgb(51,144,236)",
+                    }}
+                  >
+                    <ProfileModal
+                      user={getSenderFullObj(user, selectedChat.users)}
+                    />
+                  </div>
+                </>
+              ) : (
+                <>
+                  {selectedChat.chatName.toUpperCase()}
+                  <UpdateGroupChatModal
+                    fetchAgain={fetchAgain}
+                    setFetchAgain={setFetchAgain}
+                    fetchMessages={fetchMessages}
                   />
-                </div>
-              </>
-            ) : (
-              <>
-                {selectedChat.chatName.toUpperCase()}
-                <UpdateGroupChatModal
-                  fetchAgain={fetchAgain}
-                  setFetchAgain={setFetchAgain}
-                  fetchMessages={fetchMessages}
-                />
-              </>
-            )}
-            <Button style={{ backgroundColor: "rgb(51,144,236)" }} onClick={sendMail}>
-              Email
-            </Button>
-          </Text>
+                </>
+              )}
+              <Button style={{ backgroundColor: "rgb(51,144,236)" }} onClick={sendMail}>
+                Email
+              </Button>
+            </Text>
           </div>
 
           <Box
@@ -356,7 +356,7 @@ const uploadImage = async(pics) =>{
                 <Box style={emojiPickerStyle}>
                   <Picker
                     value={newMessage}
-                    onEmojiClick={sendImogi }
+                    onEmojiClick={sendImogi}
                     onKeyDown={sendMessage}
                   />
                 </Box>
@@ -387,7 +387,7 @@ const uploadImage = async(pics) =>{
               <IconButton
                 as="label"
                 htmlFor="upload"
-                icon={<AttachmentIcon/>}
+                icon={<AttachmentIcon />}
                 fontSize="20px"
                 variant="ghost"
                 _hover={{ bg: "transparent" }} />
@@ -396,10 +396,10 @@ const uploadImage = async(pics) =>{
                 type="file"
                 accept="image/*"
                 onChange={(e) => uploadImage(e.target.files[0])}
-                style={{ display: "none" }}/>
+                style={{ display: "none" }} />
               <Button type="submit" onClick={sendImage}> Send</Button>
             </FormControl>
- 
+
           </Box>
         </>
       ) : (
