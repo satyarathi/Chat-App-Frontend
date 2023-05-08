@@ -76,7 +76,7 @@ const MyChat = ({fetchAgain}) => {
      <GroupChatModal>
      <Button
        d="flex"
-       fontSize={{base:"17px", md:"10px", lg:"17px"}}
+       fontSize={{base:"17px", md:"10px", lg:"12px"}}
        rightIcon={<AddIcon />}
        bg="rgb(51,144,236)"
        color={'white'}
@@ -107,20 +107,20 @@ const MyChat = ({fetchAgain}) => {
                        cursor="pointer"
                        bg = { selectedChat === chat ? "rgb(51,144,236)" : "white"}
                        color={ selectedChat === chat ? "black" : "white"}
-                       px={3}
-                       py={2}
+                       px={2}
+                       py={1}
                        style={{borderBottom:"1px solid grey" }}
                        key={chat._id}
                      >
                        <div style={{display:"flex", alignItems:"center"}}>
                       <Avatar
-                      width={12}
-                      height={12}
+                      width={10}
+                      height={10}
                       src={
                         getSenderFullObj(loggedUser, chat.users).pic
                       }
                       mr={2}
-                      mt={1}
+                      mt={0}
                     />
                     <div style={{display:"flex", flexDirection:"column"}}>
                       <Text style={{fontSize:"20px", margin:"2px", color:"black"}}>
@@ -129,7 +129,7 @@ const MyChat = ({fetchAgain}) => {
                           chat.chatName}
                       </Text>
                       {chat.latestMessage && (
-                  <Text fontSize="xs" color={"aquamarine"}>
+                  <Text fontSize="xs" color={"rgb(51,144,236)"}>
                     
                     <b>{chat.latestMessage.sender.name} : </b>
                     {chat.latestMessage.content.length > 50
