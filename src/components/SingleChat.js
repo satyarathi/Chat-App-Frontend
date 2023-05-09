@@ -276,37 +276,40 @@ const inputRef = useRef();
     <>
       {selectedChat ? (
         <>
-          <div style={{ display: "flex", justifyContent: "space-between", }}>
+         
             <Text
               fontSize={{ base: "28px", md: "30px" }}
               pb={3}
               px={2}
               w="100%"
               color={"black"}
-              fontFamily="revert-layer"
+              
               display="flex"
-              justifyContent={{ base: "space-between" }}
+              justifyContent={{ base: "flex-start" }}
               alignItems="center"
+              
             >
               <IconButton
-                style={{ backgroundColor: "rgb(51,144,236)" }}
+                style={{ backgroundColor: "rgb(51,144,236)", marginRight:"30px" }}
                 d={{ base: "flex", md: "none" }}
                 icon={<ArrowBackIcon style={{ backgroundColor: "rgb(51,144,236)" }} />}
                 onClick={() => setSelectedChat("")}
               />
-
+                
               {!selectedChat.isGroupChat ? (
                 <>
-                  {getSender(user, selectedChat.users)}
+                  <div style={{width:"800px"}}>{getSender(user, selectedChat.users)}</div>
                   <div
                     style={{
-                      marginRight: "-200px",
                       marginBottom: "4px",
+                      
                       color: "rgb(51,144,236)",
+                      
                     }}
                   >
                     <ProfileModal
                       user={getSenderFullObj(user, selectedChat.users)}
+                      
                     />
                   </div>
                 </>
@@ -320,11 +323,11 @@ const inputRef = useRef();
                   />
                 </>
               )}
-              <Button style={{ backgroundColor: "rgb(51,144,236)" }} onClick={sendMail}>
+              <Button style={{ backgroundColor: "rgb(51,144,236)", marginLeft:"15px" }} onClick={sendMail}>
                 Email
               </Button>
             </Text>
-          </div>
+          
 
           <Box
             display="flex"

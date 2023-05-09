@@ -109,8 +109,9 @@ const MyChat = ({fetchAgain}) => {
                        color={ selectedChat === chat ? "black" : "white"}
                        px={2}
                        py={1}
-                       style={{borderBottom:"1px solid grey" }}
+                       style={{borderBottom:"1px solid grey", marginTop:"0px" }}
                        key={chat._id}
+                       
                      >
                        <div style={{display:"flex", alignItems:"center"}}>
                       <Avatar
@@ -122,14 +123,14 @@ const MyChat = ({fetchAgain}) => {
                       mr={2}
                       mt={0}
                     />
-                    <div style={{display:"flex", flexDirection:"column"}}>
-                      <Text style={{fontSize:"20px", margin:"2px", color:"black"}}>
+                    <div style={{display:"flex", flexDirection:"column" , }}>
+                      <Text style={{fontSize:"20px", color:"black",margin:"0px", marginLeft:"10px"}}>
                         {!chat.isGroupChat ?
                          getSender(loggedUser,chat.users) :
                           chat.chatName}
                       </Text>
                       {chat.latestMessage && (
-                  <Text fontSize="xs" color={"rgb(51,144,236)"}>
+                  <Text fontSize="xs" color={"whatsapp.500"} marginLeft={"10px"}>
                     
                     <b>{chat.latestMessage.sender.name} : </b>
                     {chat.latestMessage.content.length > 50

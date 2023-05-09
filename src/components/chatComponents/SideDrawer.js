@@ -137,7 +137,7 @@ const SideDrawer = () => {
          </Button>
         </Tooltip>
 
-        <Text fontSize="4xl" color={"white"} shadow={"inner"}>
+        <Text fontSize="4xl" color={"white"} textShadow={ "1px 1px 2px #000000"}>
           Friend Zone
         </Text>
 

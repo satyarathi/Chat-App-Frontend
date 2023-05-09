@@ -26,7 +26,7 @@ const Homepage = () => {
           justifyContent="center"
           p={3}
           bg="white"
-          w="100%"
+          w="80%"
           m="40px 0 15px 0"
         >
           <Text fontSize="4xl" color="black" ml="33%">
@@ -34,7 +34,7 @@ const Homepage = () => {
           </Text>
         </Box>
 
-        <Box bg="white" w="100%" p={4}>
+        <Box bg="white" marginLeft={"25px"} alignItems={"center"} w="90%" p={4}>
           
           {showLogin ? (
             <div>
