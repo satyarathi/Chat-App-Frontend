@@ -378,8 +378,8 @@ const inputRef = useRef();
               />
               <Input
                 placeholder="Type a message..."
-                color={"gray"}
-                border={"1px solid gray"}
+                color={"black"}
+                border={"1px solid black"}
                 size="lg"
                 value={newMessage}
                 onChange={typingHandler}

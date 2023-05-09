@@ -126,7 +126,7 @@ const SideDrawer = () => {
          <i className="fas fa-search"></i>
          <SearchIcon style={{color:"black"}}/>
          <Text
-           d = {{base: "none", md:"flex"}}
+           display = {{base: "none", md:"flex"}}
            px="4"
            color={"black"}
            borderRadius={"5px"}
