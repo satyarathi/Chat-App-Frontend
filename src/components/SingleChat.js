@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ChatState } from "../context/ChatProvider";
 import { Box, Text } from "@chakra-ui/layout";
 import {
@@ -238,11 +238,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
 
 
-
+const inputRef = useRef();
   const sendImogi = (emojiObject) => {
-    setNewMessage((prev) => prev + emojiObject?.emoji);
+    const newMessageWithEmoji = newMessage + emojiObject?.emoji;
+  setNewMessage(newMessageWithEmoji);
     // console.log(newMessage)
+    
     setShowEmojis(false);
+    inputRef.current.focus()
 
   }
 
@@ -356,7 +359,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <Box style={emojiPickerStyle}>
                   <Picker
                     value={newMessage}
-                    onEmojiClick={sendImogi}
+                    onEmojiClick={ sendImogi}
                     onKeyDown={sendMessage}
                   />
                 </Box>
@@ -382,6 +385,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 onChange={typingHandler}
                 onKeyDown={sendMessage}
                 onFocus={() => setShowEmojis(false)}
+                ref={inputRef}
               />
 
               <IconButton
