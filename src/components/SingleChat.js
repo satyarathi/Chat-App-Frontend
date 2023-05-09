@@ -276,7 +276,7 @@ const inputRef = useRef();
     <>
       {selectedChat ? (
         <>
-          <div style={{ display: "flex", justifyContent: "space-between", }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Text
               fontSize={{ base: "28px", md: "30px" }}
               pb={3}
@@ -291,7 +291,11 @@ const inputRef = useRef();
               <IconButton
                 style={{ backgroundColor: "rgb(51,144,236)" }}
                 d={{ base: "flex", md: "none" }}
-                icon={<ArrowBackIcon style={{ backgroundColor: "rgb(51,144,236)" }} />}
+                icon={
+                  <ArrowBackIcon
+                    style={{ backgroundColor: "rgb(51,144,236)" }}
+                  />
+                }
                 onClick={() => setSelectedChat("")}
               />
 
@@ -320,7 +324,10 @@ const inputRef = useRef();
                   />
                 </>
               )}
-              <Button style={{ backgroundColor: "rgb(51,144,236)" }} onClick={sendMail}>
+              <Button
+                style={{ backgroundColor: "rgb(51,144,236)" }}
+                onClick={sendMail}
+              >
                 Email
               </Button>
             </Text>
@@ -353,13 +360,13 @@ const inputRef = useRef();
                 <ScrollableChat messages={messages} />
               </div>
             )}
-
+            <div> {isTyping ? <div>typing....</div> : <></>}</div>
             <FormControl display={"flex"}>
               {showEmojis && (
                 <Box style={emojiPickerStyle}>
                   <Picker
                     value={newMessage}
-                    onEmojiClick={ sendImogi}
+                    onEmojiClick={sendImogi}
                     onKeyDown={sendMessage}
                   />
                 </Box>
@@ -376,13 +383,14 @@ const inputRef = useRef();
                 size="lg"
                 isRound
               />
+
               <Input
                 placeholder="Type a message..."
                 color={"black"}
                 border={"1px solid black"}
                 size="lg"
                 value={newMessage}
-                onChange={typingHandler}
+                onChange={ typingHandler}
                 onKeyDown={sendMessage}
                 onFocus={() => setShowEmojis(false)}
                 ref={inputRef}
@@ -394,16 +402,20 @@ const inputRef = useRef();
                 icon={<AttachmentIcon />}
                 fontSize="20px"
                 variant="ghost"
-                _hover={{ bg: "transparent" }} />
+                _hover={{ bg: "transparent" }}
+              />
               <input
                 id="upload"
                 type="file"
                 accept="image/*"
                 onChange={(e) => uploadImage(e.target.files[0])}
-                style={{ display: "none" }} />
-              <Button type="submit" onClick={sendImage}> Send</Button>
+                style={{ display: "none" }}
+              />
+              <Button type="submit" onClick={sendImage}>
+                {" "}
+                Send
+              </Button>
             </FormControl>
-
           </Box>
         </>
       ) : (
