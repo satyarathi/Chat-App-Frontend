@@ -109,7 +109,7 @@ const MyChat = ({fetchAgain}) => {
                        color={ selectedChat === chat ? "black" : "white"}
                        px={2}
                        py={1}
-                       style={{borderBottom:"1px solid grey", marginTop:"0px" }}
+                       style={{borderBottom:"1px solid grey", marginTop:"1px" }}
                        key={chat._id}
                        
                      >
@@ -130,7 +130,7 @@ const MyChat = ({fetchAgain}) => {
                           chat.chatName}
                       </Text>
                       {chat.latestMessage && (
-                  <Text fontSize="xs" color={"whatsapp.500"} marginLeft={"10px"}>
+                  <Text fontSize="12px" color={"whatsapp.500"} marginLeft={"10px"}>
                     
                     <b>{chat.latestMessage.sender.name} : </b>
                     {chat.latestMessage.content.length > 50

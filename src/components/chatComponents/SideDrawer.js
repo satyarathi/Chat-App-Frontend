@@ -19,6 +19,7 @@ import {
  import {Spinner } from '@chakra-ui/spinner';
 import { getSender } from '../../config/ChatLogic';
 import NotificationBadge, { Effect } from 'react-notification-badge';
+import Fade from 'react-reveal/Fade';
 
 const SideDrawer = () => {
     
@@ -106,6 +107,7 @@ const SideDrawer = () => {
     }
   return (
     <>
+    <Fade right>
       <Box
         display={'flex'}
         justifyContent="space-between"
@@ -230,6 +232,7 @@ const SideDrawer = () => {
 
             
         </Drawer>
+        </Fade>
     </>
   )
 }

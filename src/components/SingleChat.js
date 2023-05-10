@@ -13,7 +13,7 @@ import "./styles.css";
 import ScrollableChat from "./ScrollableChat";
 import Picker from "emoji-picker-react";
 import Image from "../image/tele.jpg";
-
+import NotificationSound from '../Audio/Notification.mp3';
 
 import io from "socket.io-client";
 
@@ -41,6 +41,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   const { user, selectedChat, setSelectedChat, notification, setNotification } =
     ChatState();
+
+
+  function playNotificationSound() {
+      new Audio(NotificationSound).play();
+  }
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
@@ -101,6 +106,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         if (!notification.includes(newMessageReceived)) {
           setNotification([newMessageReceived, ...notification]);
           setFetchAgain(!fetchAgain);
+
+          //play sound
+            playNotificationSound()
         }
       } else {
         setMessages([...messages, newMessageReceived]);
@@ -381,8 +389,8 @@ const inputRef = useRef();
               />
               <Input
                 placeholder="Type a message..."
-                color={"gray"}
-                border={"1px solid gray"}
+                color={"black"}
+                border={"1px solid black"}
                 size="lg"
                 value={newMessage}
                 onChange={typingHandler}
