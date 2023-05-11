@@ -237,7 +237,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         },
       };
       const data = await axios.post(
-        "http://localhost:5000/api/chat/send-email/" + selectedChat._id + "," + user.email, config
+        "api/chat/send-email/" + selectedChat._id + "," + user.email, config
       );
       console.log("data", data);
     } catch (error) {
