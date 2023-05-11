@@ -365,6 +365,8 @@ const inputRef = useRef();
               </div>
             )}
 
+           <div> {isTyping ? <div>typing....</div> : <></>}</div>
+
             <FormControl display={"flex"}>
               {showEmojis && (
                 <Box style={emojiPickerStyle}>
