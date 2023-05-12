@@ -107,7 +107,7 @@ const SideDrawer = () => {
     }
   return (
     <>
-    <Fade right>
+    <Fade top>
       <Box
         display={'flex'}
         justifyContent="space-between"

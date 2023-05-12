@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ChatState } from "../context/ChatProvider";
 import { Box, Text } from "@chakra-ui/layout";
-import {
-  Button, FormControl, IconButton, Input, Spinner, useToast,
-} from "@chakra-ui/react";
+import {Button, FormControl, IconButton, Input, Spinner, useToast} from "@chakra-ui/react";
 import { ArrowBackIcon, AttachmentIcon } from "@chakra-ui/icons";
 import { getSender, getSenderFullObj } from "../config/ChatLogic";
 import ProfileModal from "../components/chatComponents/ProfileModal";
@@ -14,7 +12,7 @@ import ScrollableChat from "./ScrollableChat";
 import Picker from "emoji-picker-react";
 import Image from "../image/tele.jpg";
 import NotificationSound from '../Audio/Notification.mp3';
-
+import ChatImage from '../image/ChatImage.png';
 import io from "socket.io-client";
 
 const ENDPOINT = "http://localhost:5000";
@@ -86,12 +84,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
     socket.on("stop typing", () => setIsTyping(false));
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
+    
     fetchMessages();
 
     selectedChatCompare = selectedChat;
+    // eslint-disable-next-line
   }, [selectedChat]);
 
   console.log(notification, "---------------------------->");
@@ -324,11 +325,20 @@ const inputRef = useRef();
               ) : (
                 <>
                   {selectedChat.chatName.toUpperCase()}
+                  <div
+                    style={{
+                      marginBottom: "4px",
+                      marginLeft:"55%",
+                      color: "rgb(51,144,236)",
+                      
+                    }}
+                    >
                   <UpdateGroupChatModal
                     fetchAgain={fetchAgain}
                     setFetchAgain={setFetchAgain}
                     fetchMessages={fetchMessages}
                   />
+                  </div>
                 </>
               )}
               <Button style={{ backgroundColor: "rgb(51,144,236)", marginLeft:"15px" }} onClick={sendMail}>
@@ -422,11 +432,15 @@ const inputRef = useRef();
       ) : (
         <Box
           display="flex"
+          flexDir={'column'}
           alignItems="center"
           justifyContent="center"
           h="100%"
+          
         >
+          <img src={ChatImage} alt=""/>
           <Text fontSize="3xl" pb={3} fontFamily="Work sans">
+            
             Click on a user to start chatting
           </Text>
         </Box>

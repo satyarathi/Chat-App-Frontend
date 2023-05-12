@@ -95,6 +95,7 @@ const MyChat = ({fetchAgain}) => {
       borderRadius="lg"
       overflowY="scroll"  
     >
+     
       {
         chats ? (
             <Stack overflowY='scroll'>
@@ -122,14 +123,14 @@ const MyChat = ({fetchAgain}) => {
                       mr={2}
                       mt={0}
                     />
-                    <div style={{display:"flex", flexDirection:"column" , }}>
-                      <Text style={{fontSize:"20px", color:"black",margin:"0px", marginLeft:"10px"}}>
+                    <div style={{display:"flex", flexDirection:"column" , gap:"3px"}}>
+                      <Text style={{fontSize:"18px", color:"black",margin:"0px", marginLeft:"12px"}}>
                         {!chat.isGroupChat ?
                          getSender(loggedUser,chat.users) :
                           chat.chatName}
                       </Text>
                       {chat.latestMessage && (
-                  <Text fontSize="12px" color={"whatsapp.500"} marginLeft={"10px"}>
+                  <Text fontSize="12px" color={"whatsapp.500"} marginLeft={"12px"}>
                     
                     <b>{chat.latestMessage.sender.name} : </b>
                     {chat.latestMessage.content.length > 50
@@ -146,6 +147,7 @@ const MyChat = ({fetchAgain}) => {
             <ChatLoading />
         )
       }
+      
     </Box>
     </Box>
   )
