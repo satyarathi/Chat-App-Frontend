@@ -258,6 +258,12 @@ const inputRef = useRef();
 
   }
 
+  const deleteMessageFromList =(messageId)=>{
+    var oldMessages = [...messages]
+  oldMessages =oldMessages.filter(m=>m._id!=messageId);
+  setMessages(oldMessages)
+  } 
+
   const typingHandler = (event) => {
     setNewMessage(event.target.value)
     // {typing logic}
@@ -371,7 +377,7 @@ const inputRef = useRef();
               />
             ) : (
               <div className="messages">
-                <ScrollableChat messages={messages} />
+                 <ScrollableChat messages={messages} deleteMessage={deleteMessageFromList} />
               </div>
             )}
 
@@ -439,9 +445,9 @@ const inputRef = useRef();
           
         >
           <img src={ChatImage} alt=""/>
-          <Text fontSize="3xl" pb={3} fontFamily="Work sans">
+          <Text fontSize="3xl" pb={3}>
             
-            Click on a user to start chatting
+            <b>Click on a user to start chatting</b>
           </Text>
         </Box>
       )}
