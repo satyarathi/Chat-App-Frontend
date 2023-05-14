@@ -35,6 +35,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [showEmojis, setShowEmojis] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
   const toast = useToast();
 
   const { user, selectedChat, setSelectedChat, notification, setNotification } =
@@ -169,6 +170,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       };
 
       setNewMessage("");
+      setPic(null);
 
       const { data } = await axios.post('/api/message', {
         content: '',
@@ -184,6 +186,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
 
       setMessages([...messages, data]);
+      
 
     } catch (error) {
       toast({
@@ -203,6 +206,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       if (pics.type === "image/jpeg" || pics.type === "image/png") {
         const data = new FormData();
         data.append("file", pics);
+        setSelectedFile(pics);
         data.append("upload_preset", "chat-app");
         data.append("cloud_name", "dmsibzcrw");
         fetch("https://api.cloudinary.com/v1_1/dmsibzcrw/image/upload", {
@@ -418,6 +422,7 @@ const inputRef = useRef();
               />
 
               <IconButton
+              
                 as="label"
                 htmlFor="upload"
                 icon={<AttachmentIcon />}
@@ -430,6 +435,9 @@ const inputRef = useRef();
                 accept="image/*"
                 onChange={(e) => uploadImage(e.target.files[0])}
                 style={{ display: "none" }} />
+                 <label htmlFor="upload">
+                 {selectedFile ? selectedFile.name : ""}
+                 </label>
               <Button type="submit" onClick={sendImage}> Send</Button>
             </FormControl>
 

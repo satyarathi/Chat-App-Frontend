@@ -9,6 +9,8 @@ import axios from 'axios';
 const ScrollableChat = (props) => {
   const { user } = ChatState();
   const [selectedMessage, setSelectedMessage] = useState(null);
+  const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 });
+
 
   const deleteMessage = async (messageId) => {
     console.log("delete started", messageId);
@@ -33,6 +35,11 @@ const ScrollableChat = (props) => {
   const handleContextMenu = (event, message) => {
     event.preventDefault();
     setSelectedMessage(message);
+    const boundingRect = event.target.getBoundingClientRect();
+    setContextMenuPosition({
+      x: boundingRect.left + window.scrollX,
+      y: boundingRect.top + window.scrollY,
+    });
   };
 
   const handleCloseContextMenu = () => {
@@ -41,63 +48,71 @@ const ScrollableChat = (props) => {
 
   return (
     <>
-      <ScrollableFeed>
-        {props.messages && props.messages.map((m, i) => (
-          <div style={{ display: "flex" }} key={m._id}>
-            {isSameSender(props.messages, m, i, user._id) || isLastMessage(props.messages, i, user._id) ? (
-              <Tooltip
-                label={m.sender.name}
-                placement="bottom-start"
-                hasArrow
-              >
-                <Avatar
-                  mt="7px"
-                  mr={1}
-                  size="sm"
-                  cursor="pointer"
-                  name={m.sender.name}
-                  src={m.sender.pic}
-                />
-              </Tooltip>
-            ) : null}
-            <span
-              style={{
-                backgroundColor: `${
-                  m.sender._id === user._id ? "#BEE3F8" : "#B9F5D0"
-                  }`,
-                marginLeft: isSameSenderMargin(props.messages, m, i, user._id),
-                marginTop: isSameUser(props.messages, m, i, user._id) ? 3 : 10,
-                borderRadius: `${
-                  m.sender._id === user._id ? "15px 15px 0px 15px" : "15px 15px 15px 0px"
-                  }`,
-
-                padding: "5px 15px",
-                maxWidth: "75%",
-              }}
-              onContextMenu={(event) => handleContextMenu(event, m)}
+       <ScrollableFeed>
+    {props.messages &&
+      props.messages.map((m, i) => (
+        <div style={{ display: "flex" }} key={m._id}>
+          {isSameSender(props.messages, m, i, user._id) ||
+          isLastMessage(props.messages, i, user._id) ? (
+            <Tooltip
+              label={m.sender.name}
+              placement="auto"
+              hasArrow
             >
-              {m.content}
-              {<img src={m.image}></img>}
-            </span>
-          </div>
-        ))}
-     
-      {selectedMessage && (
-        <Menu
-          onClose={handleCloseContextMenu}
-          isOpen={Boolean(selectedMessage)}
-          placement="bottom-start"
-        >
-          <MenuButton
-            ml={1}
+              <Avatar
+                mt="7px"
+                mr={1}
+                size="sm"
+                cursor="pointer"
+                name={m.sender.name}
+                src={m.sender.pic}
+              />
+            </Tooltip>
+          ) : null}
+          <span
+            style={{
+              backgroundColor: `${
+                m.sender._id === user._id ? "#BEE3F8" : "#B9F5D0"
+              }`,
+              marginLeft: isSameSenderMargin(props.messages, m, i, user._id),
+              marginTop: isSameUser(props.messages, m, i, user._id)
+                ? 3
+                : 10,
+              borderRadius: `${
+                m.sender._id === user._id
+                  ? "15px 15px 0px 15px"
+                  : "15px 15px 15px 0px"
+              }`,
+
+              padding: "5px 15px",
+              maxWidth: "75%",
+            }}
+            onContextMenu={(event) => handleContextMenu(event, m)}
           >
-          </MenuButton>
-          <MenuList>
-            <MenuItem opacity={"70%"} onClick={() => deleteMessage(selectedMessage._id)}>Delete Message</MenuItem>
-          </MenuList>
-        </Menu>
-      )}
-    </ScrollableFeed>
+            {m.content}
+            {m.image && <img src={m.image} alt="message-img" />}
+          </span>
+          {selectedMessage && selectedMessage._id === m._id && (
+            <Menu
+              onClose={handleCloseContextMenu}
+              isOpen={Boolean(selectedMessage)}
+              placement="bottom"
+              position={{ left: contextMenuPosition.x, top: contextMenuPosition.y }}
+            >
+              <MenuButton ml={1} />
+              <MenuList>
+                <MenuItem
+                  opacity={"70%"}
+                  onClick={() => deleteMessage(selectedMessage._id)}
+                >
+                  Delete
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          )}
+        </div>
+      ))}
+  </ScrollableFeed>
     </>
   )
 }
