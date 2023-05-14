@@ -186,7 +186,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
 
       setMessages([...messages, data]);
-      
+      setSelectedFile(null);
 
     } catch (error) {
       toast({
