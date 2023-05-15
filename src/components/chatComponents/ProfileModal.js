@@ -14,6 +14,7 @@ const ProfileModal = ({user,children}) => {
            d={{base: "flex"}}
            icon={<ViewIcon />}
            onClick={onOpen}
+           position={"inherit"}
          />
       )
      }
