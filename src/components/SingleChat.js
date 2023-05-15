@@ -297,7 +297,7 @@ const inputRef = useRef();
         <>
          
             <Text
-              fontSize={{ base: "28px", md: "30px" }}
+              fontSize={{ base: "20px", md: "30px" }}
               pb={3}
               px={2}
               w="100%"
@@ -453,7 +453,7 @@ const inputRef = useRef();
           
         >
           <img src={ChatImage} alt=""/>
-          <Text fontSize="3xl" pb={3}>
+          <Text fontSize={{base:"1xl", md:'2xl'}} pb={3}>
             
             <b>Click on a user to start chatting</b>
           </Text>

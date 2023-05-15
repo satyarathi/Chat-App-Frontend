@@ -62,7 +62,7 @@ const MyChat = ({fetchAgain}) => {
     <Box
       pb = {3}  
       px= {3}   
-      fontSize={{base:"28px", md:"28px"}}
+      fontSize={{base:"18px", md:"25px"}}
       display={"flex"}
       w="100%"
       color={"black"}
@@ -75,7 +75,7 @@ const MyChat = ({fetchAgain}) => {
      <GroupChatModal>
      <Button
        d="flex"
-       fontSize={{base:"17px", md:"10px", lg:"12px"}}
+       fontSize={{base:"10px", md:"10px", lg:"12px"}}
        rightIcon={<AddIcon />}
        bg="rgb(51,144,236)"
        color={'white'}
@@ -86,7 +86,7 @@ const MyChat = ({fetchAgain}) => {
     </Box>
 
     <Box
-      d="flex"
+      display="flex"
       flexDir="column"
       p={3}
       bg = "white"
@@ -124,7 +124,7 @@ const MyChat = ({fetchAgain}) => {
                       mt={0}
                     />
                     <div style={{display:"flex", flexDirection:"column" , gap:"3px"}}>
-                      <Text style={{fontSize:"18px", color:"black",margin:"0px", marginLeft:"12px"}}>
+                      <Text style={{fontSize:{base:"8px",md:"25px"}, color:"black",margin:"0px", marginLeft:"12px"}}>
                         {!chat.isGroupChat ?
                          getSender(loggedUser,chat.users) :
                           chat.chatName}
@@ -134,7 +134,7 @@ const MyChat = ({fetchAgain}) => {
                     
                     <b>{chat.latestMessage.sender.name} : </b>
                     {chat.latestMessage.content.length > 50
-                      ? chat.latestMessage.content.substring(0, 30) + "..."
+                      ? chat.latestMessage.content.substring(0, 15) + "..."
                       : chat.latestMessage.content}
                   </Text>
                 )}</div>

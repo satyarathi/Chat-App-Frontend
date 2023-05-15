@@ -139,7 +139,7 @@ const SideDrawer = () => {
          </Button>
         </Tooltip>
 
-        <Text fontSize="4xl" color={"white"} textShadow={ "1px 1px 2px #000000"}>
+        <Text fontSize={{base: "1xl", md:"4xl"}} color={"white"} textShadow={ "1px 1px 2px #000000"}>
           CHAT APP
         </Text>
 
@@ -152,7 +152,7 @@ const SideDrawer = () => {
                    count={notification.length}
                    effect={Effect.SCALE}
                   />
-                  <BellIcon fontSize="2xl" m={1} color={'white'}/>
+                  <BellIcon fontSize="2xl" m={1} color={'white'} display={{base:'none', md:'unset'}}/>
                 </MenuButton>
                  
                  <MenuList>
@@ -170,7 +170,7 @@ const SideDrawer = () => {
                  </MenuList>
             </Menu>
 
-            <Menu>
+            <Menu display={{base:'none',md:'unset'}}>
             <MenuButton
                   as={Button}
                   rightIcon={<ChevronDownIcon />}
