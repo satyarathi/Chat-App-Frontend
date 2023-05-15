@@ -297,7 +297,7 @@ const inputRef = useRef();
         <>
          
             <Text
-              fontSize={{ base: "28px", md: "30px" }}
+              fontSize={{ base: "20px", md: "30px" }}
               pb={3}
               px={2}
               w="100%"
@@ -321,7 +321,6 @@ const inputRef = useRef();
                   <div
                     style={{
                       marginBottom: "4px",
-                      
                       color: "rgb(51,144,236)",
                       
                     }}
@@ -351,7 +350,7 @@ const inputRef = useRef();
                   </div>
                 </>
               )}
-              <Button style={{ backgroundColor: "rgb(51,144,236)", marginLeft:"15px" }} onClick={sendMail}>
+              <Button style={{ backgroundColor: "rgb(51,144,236)", marginLeft:"15px", position:"unset" }} onClick={sendMail}>
                 Email
               </Button>
             </Text>
@@ -364,6 +363,7 @@ const inputRef = useRef();
             p={3}
             backgroundImage={Image}
             opacity="85%"
+            marginTop={"3px"}
             w="100%"
             h="90%"
             borderRadius="lg"
@@ -453,7 +453,7 @@ const inputRef = useRef();
           
         >
           <img src={ChatImage} alt=""/>
-          <Text fontSize="3xl" pb={3}>
+          <Text fontSize={{base:"1xl", md:'2xl'}} pb={3}>
             
             <b>Click on a user to start chatting</b>
           </Text>
