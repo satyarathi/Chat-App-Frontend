@@ -140,7 +140,7 @@ const SideDrawer = () => {
         </Tooltip>
 
         <Text fontSize="4xl" color={"white"} textShadow={ "1px 1px 2px #000000"}>
-          Greek Letter
+          CHAT APP
         </Text>
 
         <div>

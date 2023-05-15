@@ -15,7 +15,7 @@ import NotificationSound from '../Audio/Notification.mp3';
 import ChatImage from '../image/ChatImage.png';
 import io from "socket.io-client";
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://f942-103-176-135-108.ngrok-free.app";
 var socket, selectedChatCompare;
 
 
