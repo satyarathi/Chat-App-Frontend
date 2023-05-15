@@ -321,7 +321,6 @@ const inputRef = useRef();
                   <div
                     style={{
                       marginBottom: "4px",
-                      
                       color: "rgb(51,144,236)",
                       
                     }}
@@ -351,7 +350,7 @@ const inputRef = useRef();
                   </div>
                 </>
               )}
-              <Button style={{ backgroundColor: "rgb(51,144,236)", marginLeft:"15px" }} onClick={sendMail}>
+              <Button style={{ backgroundColor: "rgb(51,144,236)", marginLeft:"15px", position:"unset" }} onClick={sendMail}>
                 Email
               </Button>
             </Text>
