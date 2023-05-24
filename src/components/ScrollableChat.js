@@ -48,7 +48,7 @@ const ScrollableChat = (props) => {
 
   return (
     <>
-       <ScrollableFeed>
+  <ScrollableFeed>
     {props.messages &&
       props.messages.map((m, i) => (
         <div style={{ display: "flex" }} key={m._id}>
@@ -56,7 +56,7 @@ const ScrollableChat = (props) => {
           isLastMessage(props.messages, i, user._id) ? (
             <Tooltip
               label={m.sender.name}
-              placement="auto"
+              placement="bottom"
               hasArrow
             >
               <Avatar
