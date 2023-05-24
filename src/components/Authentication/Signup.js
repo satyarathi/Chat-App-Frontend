@@ -124,7 +124,7 @@ const Signup = () => {
      <FormControl id='first-name' isRequired>
         <FormLabel>Name</FormLabel>
         <Input 
-          _placeholder='Enter Your Name'
+          placeholder='Enter Your Name'
           onChange={(e)=>setName(e.target.value)}
           style={{borderTop:"0px", borderLeft:"0px", borderRight:"0px", bordeBottom:"2px solid black"}}
         />
@@ -133,7 +133,7 @@ const Signup = () => {
      <FormControl id='email' isRequired>
         <FormLabel>email</FormLabel>
         <Input 
-          _placeholder='Enter Your email'
+          placeholder='Enter Your email'
           onChange={(e)=>setEmail(e.target.value)}
           style={{borderTop:"0px", borderLeft:"0px", borderRight:"0px", bordeBottom:"2px solid black"}}
         />

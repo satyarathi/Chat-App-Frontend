@@ -152,7 +152,11 @@ const SideDrawer = () => {
                    count={notification.length}
                    effect={Effect.SCALE}
                   />
-                  <BellIcon fontSize="2xl" m={1} color={'white'} display={{base:'none', md:'unset'}}/>
+                  <BellIcon fontSize="2xl" m={1} color={'white'}  _hover={{
+                        //background: "rgb(51,144,236)",
+                        color: "black",
+                        fontSize:"3xl"
+                      }} />
                 </MenuButton>
                  
                  <MenuList>
@@ -177,7 +181,7 @@ const SideDrawer = () => {
                 >
                   <div style={{ display:"flex"}} > <div style={{marginTop:"5px"}}>{user.name}</div>
                   
-                  <div><Avatar size='sm' cursor={'pointer'} name={user.name}  src={user.pic}/></div>
+                  <div><Avatar size='sm' cursor={'pointer'} name={user.name} src={user.pic}/></div>
 
                  </div>
                 </MenuButton>

@@ -42,11 +42,10 @@ const MyChat = ({fetchAgain}) => {
         }
     }
     
-   
-
     useEffect(()=>{
         setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
         fetchChats();
+        // eslint-disable-next-line
     },[fetchAgain]);
 
   return (
@@ -111,7 +110,10 @@ const MyChat = ({fetchAgain}) => {
                        py={1}
                        style={{borderBottom:"1px solid grey", marginTop:"1px" }}
                        key={chat._id}
-                       
+                       _hover={{
+                        background: "rgb(51,144,236)",
+                        color: "white",
+                      }}
                      >
                        <div style={{display:"flex", alignItems:"center"}}>
                       <Avatar

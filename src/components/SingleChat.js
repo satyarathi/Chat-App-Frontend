@@ -15,7 +15,7 @@ import NotificationSound from '../Audio/Notification.mp3';
 import ChatImage from '../image/ChatImage.png';
 import io from "socket.io-client";
 
-const ENDPOINT = "https://f942-103-176-135-108.ngrok-free.app";
+const ENDPOINT = "http://localhost:5000";
 var socket, selectedChatCompare;
 
 
@@ -56,6 +56,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         },
       };
 
+      setLoading(true);
+      
       const { data } = await axios.get(
         `/api/message/${selectedChat._id}`,
         config
@@ -264,7 +266,7 @@ const inputRef = useRef();
 
   const deleteMessageFromList =(messageId)=>{
     var oldMessages = [...messages]
-  oldMessages =oldMessages.filter(m=>m._id!=messageId);
+  oldMessages =oldMessages.filter(m=>m._id!==messageId);
   setMessages(oldMessages)
   } 
 
@@ -295,66 +297,73 @@ const inputRef = useRef();
     <>
       {selectedChat ? (
         <>
-         
-            <Text
-              fontSize={{ base: "20px", md: "30px" }}
-              pb={3}
-              px={2}
-              w="100%"
-              color={"black"}
-              
-              display="flex"
-              justifyContent={{ base: "flex-start" }}
-              alignItems="center"
-              
-            >
-              <IconButton
-                style={{ backgroundColor: "rgb(51,144,236)", marginRight:"30px" }}
-                d={{ base: "flex", md: "none" }}
-                icon={<ArrowBackIcon style={{ backgroundColor: "rgb(51,144,236)" }} />}
-                onClick={() => setSelectedChat("")}
-              />
-                
-              {!selectedChat.isGroupChat ? (
-                <>
-                  <div style={{width:"800px"}}>{getSender(user, selectedChat.users)}</div>
-                  <div
-                    style={{
-                      marginBottom: "4px",
-                      color: "rgb(51,144,236)",
-                      
-                    }}
-                  >
-                    <ProfileModal
-                      user={getSenderFullObj(user, selectedChat.users)}
-                      
-                    />
-                  </div>
-                </>
-              ) : (
-                <>
-                  {selectedChat.chatName.toUpperCase()}
-                  <div
-                    style={{
-                      marginBottom: "4px",
-                      marginLeft:"55%",
-                      color: "rgb(51,144,236)",
-                      
-                    }}
-                    >
+          <Text
+            fontSize={{ base: "20px", md: "30px" }}
+            pb={3}
+            px={2}
+            w="100%"
+            color={"black"}
+            display="flex"
+            justifyContent={{ base: "flex-start" }}
+            alignItems="center"
+          >
+            <IconButton
+              style={{
+                backgroundColor: "rgb(51,144,236)",
+                marginRight: "30px",
+              }}
+              d={{ base: "flex", md: "none" }}
+              icon={
+                <ArrowBackIcon style={{ backgroundColor: "rgb(51,144,236)" }} />
+              }
+              onClick={() => setSelectedChat("")}
+            />
+
+            {!selectedChat.isGroupChat ? (
+              <>
+                <div style={{ width: "800px" }}>
+                  {getSender(user, selectedChat.users)}
+                </div>
+                <div
+                  style={{
+                    marginBottom: "4px",
+                    color: "rgb(51,144,236)",
+                  }}
+                >
+                  <ProfileModal
+                    user={getSenderFullObj(user, selectedChat.users)}
+                  />
+                </div>
+              </>
+            ) : (
+              <>
+                {selectedChat.chatName.toUpperCase()}
+                <div
+                  style={{
+                    marginBottom: "4px",
+                    marginLeft: "55%",
+                    color: "rgb(51,144,236)",
+                  }}
+                >
                   <UpdateGroupChatModal
                     fetchAgain={fetchAgain}
                     setFetchAgain={setFetchAgain}
                     fetchMessages={fetchMessages}
                   />
-                  </div>
-                </>
-              )}
-              <Button style={{ backgroundColor: "rgb(51,144,236)", marginLeft:"15px", position:"unset" }} onClick={sendMail}>
-                Email
-              </Button>
-            </Text>
-          
+                </div>
+              </>
+            )}
+            <Button
+              style={{
+                backgroundColor: "rgb(51,144,236)",
+                marginLeft: "15px",
+                position: "unset",
+              }}
+              onClick={sendMail}
+            >
+              Email
+            </Button>
+          </Text>
 
           <Box
             display="flex"
@@ -381,18 +390,21 @@ const inputRef = useRef();
               />
             ) : (
               <div className="messages">
-                 <ScrollableChat messages={messages} deleteMessage={deleteMessageFromList} />
+                <ScrollableChat
+                  messages={messages}
+                  deleteMessage={deleteMessageFromList}
+                />
               </div>
             )}
 
-           <div> {isTyping ? <div>typing....</div> : <></>}</div>
+            <div> {isTyping ? <div>typing....</div> : <></>}</div>
 
             <FormControl display={"flex"}>
               {showEmojis && (
                 <Box style={emojiPickerStyle}>
                   <Picker
                     value={newMessage}
-                    onEmojiClick={ sendImogi}
+                    onEmojiClick={sendImogi}
                     onKeyDown={sendMessage}
                   />
                 </Box>
@@ -422,39 +434,43 @@ const inputRef = useRef();
               />
 
               <IconButton
-              
                 as="label"
                 htmlFor="upload"
                 icon={<AttachmentIcon />}
                 fontSize="20px"
                 variant="ghost"
-                _hover={{ bg: "transparent" }} />
+                _hover={{ bg: "transparent" }}
+              />
               <input
                 id="upload"
                 type="file"
                 accept="image/*"
                 onChange={(e) => uploadImage(e.target.files[0])}
-                style={{ display: "none" }} />
-                 <label htmlFor="upload">
-                 {selectedFile ? selectedFile.name : ""}
-                 </label>
-              <Button type="submit" onClick={sendImage}> Send</Button>
+                style={{ display: "none" }}
+              />
+              <label htmlFor="upload">
+                {selectedFile ? selectedFile.name : ""}
+              </label>
+              <Button type="submit" onClick={sendImage}>
+                {" "}
+                Send
+              </Button>
             </FormControl>
-
           </Box>
         </>
       ) : (
         <Box
           display="flex"
-          flexDir={'column'}
+          flexDir={"column"}
           alignItems="center"
           justifyContent="center"
           h="100%"
-          
         >
-          <img src={ChatImage} alt=""/>
-          <Text fontSize={{base:"1xl", md:'2xl'}} pb={3}>
-            
+          <img
+            src={ChatImage}
+            alt=""
+          />
+          <Text fontSize={{ base: "1xl", md: "2xl" }} pb={3} >
             <b>Click on a user to start chatting</b>
           </Text>
         </Box>
